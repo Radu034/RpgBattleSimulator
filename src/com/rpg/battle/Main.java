@@ -1,8 +1,7 @@
 package com.rpg.battle;
 
 import com.rpg.battle.characters.*;
-import com.rpg.battle.observers.BattleLogger;
-import com.rpg.battle.observers.BattleSubject;
+import com.rpg.battle.observers.*;
 import com.rpg.battle.strategies.*;
 
 public class Main {
@@ -10,11 +9,11 @@ public class Main {
         BattleSubject subject = new BattleSubject();
         subject.addObserver(new BattleLogger());
 
-        Warrior hero = new Warrior("Laurentiu");
-        Warrior enemy = new Warrior("Sir Messmer");
+        Warrior hero = new Warrior("Laurentiu", 4, 6);
+        Warrior enemy = new Warrior("Sir Messmer", 3, 2);
 
-        hero.setAttackStrategy(new WeaponAttack());
-        enemy.setAttackStrategy(new MagicAttack());
+        hero.randomAttackStrategy();
+        enemy.randomAttackStrategy();
 
         hero.setBattleSubject(subject);
         enemy.setBattleSubject(subject);
@@ -26,6 +25,10 @@ public class Main {
             if(enemy.isAlive()){
                 enemy.attack(hero);
             }
+
+            hero.randomAttackStrategy();
+            enemy.randomAttackStrategy();
+
             System.out.println(hero.getName() + " Health: " + hero.getHealth());
             System.out.println(enemy.getName() + " Health " + enemy.getHealth());
             System.out.println();
@@ -35,7 +38,7 @@ public class Main {
             System.out.println(hero.getName() + " wins!");
         }
         else{
-            System.out.println(enemy.getName() + "wins!");
+            System.out.println(enemy.getName() + " wins!");
         }
     }
 }
