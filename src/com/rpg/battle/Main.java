@@ -1,15 +1,23 @@
 package com.rpg.battle;
 
 import com.rpg.battle.characters.*;
+import com.rpg.battle.observers.BattleLogger;
+import com.rpg.battle.observers.BattleSubject;
 import com.rpg.battle.strategies.*;
 
 public class Main {
     public static void main(String[] args){
+        BattleSubject subject = new BattleSubject();
+        subject.addObserver(new BattleLogger());
+
         Warrior hero = new Warrior("Laurentiu");
         Warrior enemy = new Warrior("Sir Messmer");
 
         hero.setAttackStrategy(new WeaponAttack());
         enemy.setAttackStrategy(new MagicAttack());
+
+        hero.setBattleSubject(subject);
+        enemy.setBattleSubject(subject);
 
         System.out.println("Combat begins!");
 
