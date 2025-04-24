@@ -1,8 +1,11 @@
 package com.rpg.battle.characters;
 
+import com.rpg.battle.strategies.AttackStrategy;
+
 public abstract class Character {
     protected String name;
     protected int health;
+    protected AttackStrategy attackStrategy;
 
     public Character(String  name, int health){
         this.name = name;
@@ -25,5 +28,14 @@ public abstract class Character {
         return health > 0;
     }
 
-    public abstract void attack(Character target);
+    public void setAttackStrategy(AttackStrategy attackStrategy){
+        this.attackStrategy = attackStrategy;
+    }
+    public void attack(Character target){
+        if(attackStrategy != null){
+            attackStrategy.attack(this, target);
+        }else{
+            System.out.println(name + "has no attack strategy!");
+        }
+    }
 }
