@@ -9,8 +9,8 @@ public class Main {
         BattleSubject subject = new BattleSubject();
         subject.addObserver(new BattleLogger());
 
-        Warrior hero = new Warrior("Laurentiu", 4, 6);
-        Warrior enemy = new Warrior("Sir Messmer", 3, 2);
+        Warrior hero = new Warrior("Sir Ansbach", 4, 6);
+        Warrior enemy = new Warrior("Sir Messmer", 6, 3);
 
         hero.randomAttackStrategy();
         enemy.randomAttackStrategy();

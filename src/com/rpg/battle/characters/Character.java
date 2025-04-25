@@ -62,4 +62,8 @@ public abstract class Character {
             System.out.println(name + "has no attack strategy!");
         }
     }
+
+    public AttackStrategy getAttackStrategy() {
+        return attackStrategy;
+    }
 }
